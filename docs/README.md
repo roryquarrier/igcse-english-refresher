@@ -53,6 +53,19 @@ Everything is stored in `localStorage` under `igcse-english.progress.v2`:
                               "total": 10, "attempts": 1, "sig": "…", "lastAt": "…" } } }
 ```
 
+## Audit test
+`tests/progress-audit.mjs` drives a real headless Chrome over the DevTools
+Protocol and exercises the whole progress system the way a student would —
+real button clicks, real file-picker input (`DOM.setFileInputFiles`). It checks
+the dashboard maths against the raw store, export/import round-tripping, reload
+persistence, bad-file rejection, reset behaviour and page responsiveness.
+
+```bash
+node tests/progress-audit.mjs                                    # against the live site
+node tests/progress-audit.mjs http://127.0.0.1:8000/index.html   # against a local server
+```
+Exits non-zero if any check fails. Needs Chrome (`CHROME_BIN` to override).
+
 The **📈 My Progress** dashboard shows sections complete, quiz questions correct,
 quizzes tried and quiz mastery %, plus a per-section table. **Export progress**
 downloads that JSON so a teacher can collect it; **Import progress** restores it
