@@ -58,13 +58,8 @@
       var raw = localStorage.getItem(KEY);
       if (raw) {
         var p = JSON.parse(raw);
-        if (p && typeof p === "object") {
-          s.name = p.name || "";
-          s.done = p.done || {};
-          s.doneAt = p.doneAt || {};
-          s.quiz = p.quiz || {};
-          s.updated = p.updated || null;
-        }
+        var clean = sanitizeProgress(p);
+        if (clean) s = clean;
       } else {
         /* migrate the old v1 completion ticks */
         var old = JSON.parse(localStorage.getItem(OLD_DONE) || "[]");
@@ -110,6 +105,46 @@
   function clearAnswers(sid) {
     if (store.quiz[sid]) { store.quiz[sid].answers = {}; store.quiz[sid].sig = null; save(); }
   }
+  /* Normalise a candidate progress object. Returns null when it is not
+     recognisably our own export, so a wrong file cannot wipe real progress. */
+  function sanitizeProgress(p) {
+    if (!p || typeof p !== "object" || Array.isArray(p)) return null;
+    if (!("done" in p) && !("quiz" in p) && !("v" in p)) return null;
+    var out = blank();
+    if (typeof p.name === "string") out.name = p.name.slice(0, 40);
+    if (p.done && typeof p.done === "object") {
+      Object.keys(p.done).forEach(function (k) { if (p.done[k]) out.done[k] = true; });
+    }
+    if (p.doneAt && typeof p.doneAt === "object") {
+      Object.keys(out.done).forEach(function (k) { if (typeof p.doneAt[k] === "string") out.doneAt[k] = p.doneAt[k]; });
+    }
+    if (p.quiz && typeof p.quiz === "object" && !Array.isArray(p.quiz)) {
+      Object.keys(p.quiz).forEach(function (k) {
+        var r = p.quiz[k];
+        if (!r || typeof r !== "object" || Array.isArray(r)) return;
+        var answers = {};
+        if (r.answers && typeof r.answers === "object" && !Array.isArray(r.answers)) {
+          Object.keys(r.answers).forEach(function (qi) {
+            var n = Number(qi), v = r.answers[qi];
+            if (isFinite(n) && n >= 0 && (typeof v === "number") && isFinite(v) && v >= 0) answers[String(n)] = Math.floor(v);
+          });
+        }
+        var num = function (x, d) { return (typeof x === "number" && isFinite(x) && x >= 0) ? Math.floor(x) : d; };
+        out.quiz[k] = {
+          answers: answers,
+          best: num(r.best, 0),
+          last: num(r.last, 0),
+          total: num(r.total, 0),
+          attempts: num(r.attempts, 0),
+          sig: (typeof r.sig === "string") ? r.sig : null,
+          lastAt: (typeof r.lastAt === "string") ? r.lastAt : null
+        };
+      });
+    }
+    out.updated = (typeof p.updated === "string") ? p.updated : null;
+    return out;
+  }
+
   function sigOf(answers, total) {
     var keys = Object.keys(answers);
     if (keys.length !== total) return null;
@@ -423,11 +458,11 @@
       if (!f) return;
       var rd = new FileReader();
       rd.onload = function () {
-        try {
-          var p = JSON.parse(String(rd.result));
-          store = { v: 2, name: p.name || "", done: p.done || {}, doneAt: p.doneAt || {}, quiz: p.quiz || {}, updated: p.updated || null };
-          save(); decorateNav(); updatePill(); renderDashboard(s);
-        } catch (e) { alert("That file could not be read as progress JSON."); }
+        var clean = null;
+        try { clean = sanitizeProgress(JSON.parse(String(rd.result))); } catch (e) { clean = null; }
+        if (!clean) { alert("That file is not an IGCSE English progress export, so nothing was changed."); return; }
+        store = clean;
+        save(); decorateNav(); updatePill(); renderDashboard(s);
       };
       rd.readAsText(f);
       impFile.value = "";
