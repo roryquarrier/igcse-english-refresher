@@ -246,3 +246,10 @@ body{
   .quiz{padding:14px 12px}
   .quiz-q{padding:10px 12px 10px 42px}
 }
+
+/* ================= inline notices (no blocking dialogs) ================= */
+.notice{margin:0 0 12px;padding:11px 13px;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--panel-2)}
+.notice.warn{border-left:4px solid var(--amber);background:var(--amber-soft)}
+.notice.ok{border-left:4px solid var(--accent);background:var(--accent-soft)}
+.notice-text{margin:0 0 8px;font-size:.88rem;font-weight:600}
+.notice-actions{display:flex;gap:8px;flex-wrap:wrap}

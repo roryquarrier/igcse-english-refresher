@@ -105,6 +105,30 @@
   function clearAnswers(sid) {
     if (store.quiz[sid]) { store.quiz[sid].answers = {}; store.quiz[sid].sig = null; save(); }
   }
+  /* In-page messages. We deliberately never use alert()/confirm(): a modal
+     dialog blocks JavaScript, so a client that cannot dismiss it (headless,
+     embedded, automated) would freeze the whole page. */
+  function notice(host, kind, text, actionLabel, action) {
+    var box = el("div", "notice " + kind);
+    box.setAttribute("role", kind === "warn" ? "status" : "status");
+    var p = el("p", "notice-text", text);
+    box.appendChild(p);
+    var row = el("div", "notice-actions");
+    if (actionLabel && action) {
+      var yes = el("button", "btn danger", actionLabel);
+      yes.type = "button";
+      yes.addEventListener("click", function () { box.remove(); action(); });
+      row.appendChild(yes);
+    }
+    var no = el("button", "btn", actionLabel ? "Cancel" : "OK");
+    no.type = "button";
+    no.addEventListener("click", function () { box.remove(); });
+    row.appendChild(no);
+    box.appendChild(row);
+    if (host) host.insertBefore(box, host.firstChild);
+    return box;
+  }
+
   /* Normalise a candidate progress object. Returns null when it is not
      recognisably our own export, so a wrong file cannot wipe real progress. */
   function sanitizeProgress(p) {
@@ -460,9 +484,15 @@
       rd.onload = function () {
         var clean = null;
         try { clean = sanitizeProgress(JSON.parse(String(rd.result))); } catch (e) { clean = null; }
-        if (!clean) { alert("That file is not an IGCSE English progress export, so nothing was changed."); return; }
+        if (!clean) {
+          renderDashboard(s);
+          notice(host, "warn", "That file is not an IGCSE English progress export, so nothing was changed. Your progress is safe.");
+          return;
+        }
         store = clean;
-        save(); decorateNav(); updatePill(); renderDashboard(s);
+        save(); decorateNav(); updatePill();
+        renderDashboard(s);
+        notice(el(".dash", host) || host, "ok", "Progress imported successfully.");
       };
       rd.readAsText(f);
       impFile.value = "";
@@ -470,10 +500,13 @@
     var reset = el("button", "btn danger", "\u{1F5D1}\uFE0F Reset everything");
     reset.type = "button";
     reset.addEventListener("click", function () {
-      if (!confirm("Erase all progress, quiz answers and the student name on this device?")) return;
-      store = blank(); save();
-      try { localStorage.removeItem(OLD_DONE); localStorage.removeItem(OLD_LAST); } catch (e) {}
-      decorateNav(); updatePill(); renderDashboard(s);
+      notice(host, "warn", "Erase all progress, quiz answers and the student name on this device?", "Erase everything", function () {
+        store = blank(); save();
+        try { localStorage.removeItem(OLD_DONE); localStorage.removeItem(OLD_LAST); } catch (e) {}
+        decorateNav(); updatePill();
+        renderDashboard(s);
+        notice(el(".dash", host) || host, "ok", "All progress on this device has been erased.");
+      });
     });
     tools.appendChild(exp); tools.appendChild(impBtn); tools.appendChild(reset); tools.appendChild(impFile);
     wrap.appendChild(tools);
