@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IGCSE English Refresher — 8-Week Bridge Course</title>
 <meta name="description" content="An 8-week bridge course for IGCSE English (First Language 0500 or ESL 0510/0511), built for a 12-year-old in Hong Kong. Diagnostic, modules, mock paper and answer key.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0e1420">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<script>
+  /* set theme before first paint to avoid a flash */
+  (function () {
+    try {
+      var t = localStorage.getItem("igcse-english.theme");
+      document.documentElement.dataset.theme = (t === "light" || t === "dark") ? t : "dark";
+    } catch (e) { document.documentElement.dataset.theme = "dark"; }
+  })();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,48 +24,60 @@
 
 <header class="topbar">
   <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">☰</button>
+  <span class="brand-badge" aria-hidden="true">📚</span>
   <div class="brand">
     <span class="brand-title">IGCSE English Refresher</span>
     <span class="brand-sub">8-week bridge course · Hong Kong · age 12</span>
   </div>
   <div class="topbar-tools">
     <span class="progress-pill" id="progressPill" aria-live="polite" title="Sections marked complete">0 / 12 complete</span>
+    <button class="icon-btn theme-btn" id="themeBtn" type="button" aria-label="Switch to light theme" title="Switch theme">☀️</button>
   </div>
+  <div class="progressbar" id="progressBar" role="progressbar" aria-label="Course progress" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0"><span></span></div>
 </header>
 
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Course sections">
     <div class="search-wrap">
+      <span class="search-ico" aria-hidden="true">🔎</span>
       <label class="sr-only" for="search">Filter sections</label>
-      <input id="search" type="search" placeholder="Filter sections…" autocomplete="off" spellcheck="false">
+      <input id="search" type="search" placeholder="Search the course…" autocomplete="off" spellcheck="false">
       <p class="search-hint" id="searchHint" aria-live="polite"></p>
     </div>
     <div class="nav-list" id="navList"></div>
+    <p class="nav-foot">Made for a 12-year-old in HK 🇭🇰</p>
   </nav>
 
   <div class="scrim" id="scrim" hidden></div>
 
   <main id="content" class="content" tabindex="-1">
     <div class="content-inner">
-      <div class="section-head">
-        <p class="eyebrow" id="sectionGroup"></p>
-        <h1 id="sectionTitle"></h1>
+      <article class="card">
+        <div class="section-head">
+          <div class="sec-emoji" id="sectionEmoji" aria-hidden="true">🚀</div>
+          <div class="sec-meta">
+            <p class="eyebrow" id="sectionGroup"></p>
+            <h1 id="sectionTitle"></h1>
+            <p class="sec-blurb" id="sectionBlurb"></p>
+          </div>
+        </div>
         <label class="done-toggle">
           <input type="checkbox" id="doneToggle">
-          <span>Mark this section complete</span>
+          <span class="done-text">Mark this section complete</span>
         </label>
-      </div>
-      <div class="prose" id="sectionBody"></div>
-      <nav class="pager" aria-label="Section navigation">
-        <button class="pager-btn" id="prevBtn" type="button">← Previous</button>
-        <button class="pager-btn" id="nextBtn" type="button">Next →</button>
-      </nav>
+        <div class="prose" id="sectionBody"></div>
+        <nav class="pager" aria-label="Section navigation">
+          <button class="pager-btn" id="prevBtn" type="button">← Previous</button>
+          <button class="pager-btn" id="nextBtn" type="button">Next →</button>
+        </nav>
+      </article>
     </div>
   </main>
 </div>
 
 <footer class="site-foot">
-  <p>IGCSE English Refresher · course content and site generated from <code>course/</code> · figures read from Cambridge International's 0500 (2027–2029) and 0510/0511/0974 syllabuses.</p>
+  <p>📚 IGCSE English Refresher · content and site generated from <code>course/</code><br>
+  Figures read from Cambridge International's 0500 (2027–2029) and 0510/0511/0974 syllabuses.</p>
 </footer>
 
 <script src="content.js"></script>
