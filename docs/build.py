@@ -22,6 +22,8 @@ ROOT = os.path.dirname(HERE)
 SECTIONS = [
     ("overview", "README.md", "Overview", "Start", "\U0001F680",
      "What this course is, the two IGCSE routes, and the 8-week plan."),
+    ("dashboard", None, "My Progress", "Start", "\U0001F4C8",
+     "Your quiz scores, completed sections and answers - saved in this browser."),
     ("module-01", "course/01-diagnostic-test.md", "Diagnostic Test", "Modules", "\U0001FA7A",
      "A 45-minute placement test that finds your level and your top errors."),
     ("module-02", "course/02-foundations-grammar-punctuation.md", "Grammar & Punctuation", "Modules", "\u270F\uFE0F",
@@ -57,13 +59,22 @@ def first_heading(text, fallback):
 
 
 def build():
+    quiz_path = os.path.join(ROOT, "course", "quizzes.json")
+    quizzes = {}
+    if os.path.exists(quiz_path):
+        with open(quiz_path, encoding="utf-8") as f:
+            quizzes = {k: v for k, v in json.load(f).items() if not k.startswith("_")}
+
     out = []
     for sid, rel, label, group, emoji, blurb in SECTIONS:
-        with open(os.path.join(ROOT, rel), encoding="utf-8") as f:
-            raw = f.read()
-        # The leading H1 becomes the page title, so drop it from the body.
-        body = re.sub(r"^#\s+.+\n", "", raw, count=1)
-        html = markdown.markdown(body, extensions=EXTENSIONS)
+        if rel is None:
+            raw, html, kind = "", "", "dashboard"
+        else:
+            with open(os.path.join(ROOT, rel), encoding="utf-8") as f:
+                raw = f.read()
+            # The leading H1 becomes the page title, so drop it from the body.
+            body = re.sub(r"^#\s+.+\n", "", raw, count=1)
+            html, kind = markdown.markdown(body, extensions=EXTENSIONS), "doc"
         out.append({
             "id": sid,
             "label": label,
@@ -72,6 +83,8 @@ def build():
             "groupEmoji": GROUP_EMOJI.get(group, "\u2022"),
             "emoji": emoji,
             "blurb": blurb,
+            "kind": kind,
+            "quiz": quizzes.get(sid),
             "html": html,
         })
     payload = json.dumps({"sections": out}, ensure_ascii=False, separators=(",", ":"))

@@ -61,11 +61,14 @@
             <p class="sec-blurb" id="sectionBlurb"></p>
           </div>
         </div>
-        <label class="done-toggle">
-          <input type="checkbox" id="doneToggle">
-          <span class="done-text">Mark this section complete</span>
-        </label>
+        <div id="toggleWrap">
+          <label class="done-toggle">
+            <input type="checkbox" id="doneToggle">
+            <span class="done-text" id="doneText">Mark this section complete</span>
+          </label>
+        </div>
         <div class="prose" id="sectionBody"></div>
+        <div id="quizHost" hidden></div>
         <nav class="pager" aria-label="Section navigation">
           <button class="pager-btn" id="prevBtn" type="button">← Previous</button>
           <button class="pager-btn" id="nextBtn" type="button">Next →</button>

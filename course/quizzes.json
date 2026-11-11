@@ -1,0 +1,94 @@
+{
+  "_note": "Interactive multiple-choice bank. Keys match section ids in build.py. 'answer' is the 0-based index of the correct option. 'why' is shown after answering. Edit here, then run: cd docs && python3 build.py",
+  "module-01": {
+    "title": "Warm-up: how much do you already know?",
+    "questions": [
+      {"q": "Choose the correct verb: The team ___ been training every morning since Monday.", "options": ["has", "have"], "answer": 0, "why": "'The team' is a collective noun and takes a singular verb in British usage: The team has been training."},
+      {"q": "Which is correct? Neither of the boys ___ late for practice.", "options": ["was", "were"], "answer": 0, "why": "'Neither' is singular, so it takes 'was'."},
+      {"q": "He ran ___ down the steps.", "options": ["quick", "quickly"], "answer": 1, "why": "'Quickly' is an adverb and describes how he ran."},
+      {"q": "If I ___ taller, I would play centre.", "options": ["was", "were"], "answer": 1, "why": "In an imaginary 'if' clause, English uses 'were': If I were taller…"},
+      {"q": "Which sentence is punctuated correctly?", "options": ["\"Where are you going?\" shouted Mum.", "\"Where are you going\"? shouted Mum.", "\"Where are you going?\" Shouted Mum."], "answer": 0, "why": "The question mark sits inside the speech marks, and 'shouted Mum' continues the sentence so 'shouted' stays lowercase."}
+    ]
+  },
+  "module-02": {
+    "title": "Grammar & punctuation quick check",
+    "questions": [
+      {"q": "Which sentence keeps its tense consistent?", "options": ["He walks into the room and saw the trophy.", "He walked into the room and saw the trophy.", "He walked into the room and sees the trophy."], "answer": 1, "why": "Both verbs stay in the past: walked … saw."},
+      {"q": "Yesterday we ___ to the beach.", "options": ["go", "are going", "went"], "answer": 2, "why": "'Yesterday' is finished time, so use the past simple: went."},
+      {"q": "He ___ his homework an hour ago.", "options": ["has finished", "finished"], "answer": 1, "why": "'An hour ago' is a finished time, so 'finished' — not the present perfect."},
+      {"q": "The list of names ___ long.", "options": ["was", "were"], "answer": 0, "why": "The subject is 'list', not 'names': the list was long."},
+      {"q": "There ___ three reasons for this.", "options": ["is", "are"], "answer": 1, "why": "The real subject is 'three reasons' (plural), so 'are'."},
+      {"q": "The news ___ good.", "options": ["is", "are"], "answer": 0, "why": "'News' looks plural but is singular: the news is good."},
+      {"q": "Which is punctuated correctly?", "options": ["\"Wait,\" he said, \"I'm coming.\"", "\"Wait\", he said \"I'm coming\"", "\"Wait,\" he said \"I'm coming.\""], "answer": 0, "why": "A comma sits inside the speech marks, and the reporting clause 'he said' is separated by commas on both sides."},
+      {"q": "Which sentence is a complex sentence?", "options": ["We played on.", "It rained and we played on.", "Although it was raining, we played on."], "answer": 2, "why": "A complex sentence has a main clause plus a subordinate clause introduced by 'although'."},
+      {"q": "Which sentence is in a different tense from the others?", "options": ["She opened the door, looked around and screamed.", "They decided to walk.", "He has finished his tea."], "answer": 2, "why": "The first two are past simple; 'has finished' is present perfect."},
+      {"q": "Which uses apostrophes correctly?", "options": ["It's raining, and the city's trams are slow.", "Its raining, and the city's trams are slow.", "It's raining, and the citys trams are slow."], "answer": 0, "why": "'It's' = it is; 'city's' shows possession."}
+    ]
+  },
+  "module-03": {
+    "title": "Vocabulary quick check",
+    "questions": [
+      {"q": "Which is the best replacement for 'very nice' describing food?", "options": ["delicious", "big", "fine"], "answer": 0, "why": "'Delicious' is precise and describes taste; 'big' and 'fine' are vague."},
+      {"q": "Which is the best replacement for 'very tired'?", "options": ["exhausted", "quiet", "slow"], "answer": 0, "why": "'Exhausted' already means very tired, so it replaces the whole phrase."},
+      {"q": "Which sentence contains a simile?", "options": ["The city was a furnace.", "Her laugh was like a door slamming.", "The wind clawed at the windows."], "answer": 1, "why": "A simile compares using 'like' or 'as'."},
+      {"q": "Which sentence uses personification?", "options": ["The wind clawed at the windows.", "The city was a furnace.", "Her laugh was like a door slamming."], "answer": 0, "why": "The wind is given a human action — clawing."},
+      {"q": "Which sentence shows embarrassment rather than telling it?", "options": ["He was embarrassed.", "A red flush crept up his neck; he studied his shoes as if they held the answers.", "He felt very embarrassed indeed."], "answer": 1, "why": "Showing gives the reader evidence (a flush, a gesture) and lets them name the feeling."},
+      {"q": "Which phrase is a cliché you should avoid?", "options": ["raining cats and dogs", "sweltering", "jostling"], "answer": 0, "why": "Examiners have read it thousands of times — clichés score nothing."},
+      {"q": "Which verb best describes heavy, slow walking?", "options": ["trudged", "sprinted", "skipped"], "answer": 0, "why": "'Trudged' means slow, heavy walking — the others are fast or light."},
+      {"q": "Which weak-to-strong pairing is mismatched?", "options": ["big → enormous", "said → muttered", "very hot → freezing"], "answer": 2, "why": "Freezing means very cold, not very hot — that pair is wrong."}
+    ]
+  },
+  "module-04": {
+    "title": "Reading quick check (Cheung Chau passage)",
+    "questions": [
+      {"q": "What happens at midnight on the island?", "options": ["A whistle blows and climbers race up a tower of buns.", "The buns are blessed and eaten.", "The ferry brings the crowds over."], "answer": 0, "why": "This is an R1 question — the answer is stated plainly in the text."},
+      {"q": "Who are the climbers?", "options": ["paid professional athletes", "students, chefs and delivery riders", "tourists from the mainland"], "answer": 1, "why": "The text says they are students, or chefs, or delivery riders — ordinary people."},
+      {"q": "Why was the race stopped in 1978?", "options": ["too few climbers entered", "the tower collapsed and forty people were hurt", "the buns ran out"], "answer": 1, "why": "The tower collapsed in a heap of bamboo and forty people were hurt."},
+      {"q": "'An island that knows every one of their names' suggests the community is…", "options": ["large and anonymous", "small and close-knit", "wealthy and famous"], "answer": 1, "why": "Knowing everyone's name shows a small, tight community."},
+      {"q": "The writer says the race came back 'even better' because…", "options": ["it is now completely safe", "the risk is now shared and understood rather than hidden", "more prize money is offered"], "answer": 1, "why": "The text says not because danger is gone, but because the risk is now shared."},
+      {"q": "Which of these is an implicit (R2) question?", "options": ["Where does the race take place?", "How many people were hurt in 1978?", "What impression does the writer give of the climbers?"], "answer": 2, "why": "R2 questions ask about attitude and impression, not facts you can point to."}
+    ]
+  },
+  "module-05": {
+    "title": "Summary skills quick check",
+    "questions": [
+      {"q": "In a summary, you should…", "options": ["copy the best sentences exactly", "use your own words", "add your own opinion"], "answer": 1, "why": "Copied phrases do not count for R5 — paraphrase everything."},
+      {"q": "How many points should you select?", "options": ["as many as you can find", "only those relevant to the stated focus", "only the first and last paragraph"], "answer": 1, "why": "Read the focus line twice; every point must serve it."},
+      {"q": "Which is NOT allowed in a summary?", "options": ["linking words", "your own opinion", "continuous prose"], "answer": 1, "why": "A summary has no opinion — ever."},
+      {"q": "Which connective best links an opposite idea?", "options": ["furthermore", "however", "also"], "answer": 1, "why": "'However' signals contrast; the others add ideas."},
+      {"q": "What happens if you go over the word limit?", "options": ["nothing, as long as it is good", "you lose marks", "you get extra marks for detail"], "answer": 1, "why": "Stay at or under the limit — going over costs marks."}
+    ]
+  },
+  "module-06": {
+    "title": "Directed writing quick check",
+    "questions": [
+      {"q": "You are writing to your headteacher. Which opening is right?", "options": ["Hi Mrs Chan!", "Dear Mrs Chan,", "Hey, guess what?"], "answer": 1, "why": "Formal register, with a proper salutation."},
+      {"q": "Which sign-off matches 'Dear Sir/Madam'?", "options": ["Yours sincerely", "Yours faithfully", "See you soon"], "answer": 1, "why": "'Sir/Madam' means you do not know the name, so: Yours faithfully."},
+      {"q": "Which opener is informal register?", "options": ["Hi Jay — guess what happened.", "I am writing to complain about the service.", "Dear Sir/Madam,"], "answer": 0, "why": "Contractions and a chatty tone belong in a message to a friend."},
+      {"q": "In an article, how do you involve the reader?", "options": ["by using first and second person and rhetorical questions", "by writing only in the third person", "by avoiding questions"], "answer": 0, "why": "'Ever noticed how…? You probably have.' pulls the reader in."},
+      {"q": "Which text type uses sub-headings like Introduction, Findings, Recommendations?", "options": ["a diary entry", "a report", "an informal email"], "answer": 1, "why": "A report is factual and formally structured."},
+      {"q": "You miss one of the three bullet points in a directed writing task. The result is…", "options": ["no penalty", "a cap on your mark", "extra credit for the other two"], "answer": 1, "why": "A missing bullet caps the mark — check every cue before you finish."}
+    ]
+  },
+  "module-07": {
+    "title": "Composition quick check",
+    "questions": [
+      {"q": "Before any extended writing you should…", "options": ["start immediately to save time", "spend 3 minutes planning", "write the ending first"], "answer": 1, "why": "A five-line plan is worth two marks of structure."},
+      {"q": "Descriptive writing should be built around…", "options": ["one controlling impression", "as many details as possible", "a list of adjectives"], "answer": 0, "why": "Decide one feeling the place should leave, and choose details that serve it."},
+      {"q": "Which technique controls the pace of a narrative?", "options": ["varying sentence length", "using only long sentences", "avoiding paragraphs"], "answer": 0, "why": "Short sentences speed up; long sentences slow down."},
+      {"q": "Which ending should you avoid?", "options": ["a decision the character makes", "a line of dialogue", "'…and then I woke up.'"], "answer": 2, "why": "'It was all a dream' endings feel cheap and earn nothing."},
+      {"q": "You show a character is brave by…", "options": ["writing 'he was brave'", "showing an action: he stepped between his sister and the dog", "describing his muscles"], "answer": 1, "why": "Show character through action, not by labelling them."}
+    ]
+  },
+  "module-08": {
+    "title": "Language analysis quick check",
+    "questions": [
+      {"q": "You write only: 'The writer uses a metaphor here.' How many marks does naming the device earn?", "options": ["full marks", "some marks", "none — you must explain the effect"], "answer": 2, "why": "Naming earns nothing. Explain what it makes the reader see, feel or think."},
+      {"q": "Q-E-E stands for…", "options": ["Question, Evidence, Evaluation", "Quote, Explain, Effect", "Quick, Exact, Easy"], "answer": 1, "why": "Quote the words, Explain the technique, then state the Effect on the reader."},
+      {"q": "'The old tram rattles up the hill.' What does 'rattles' suggest?", "options": ["speed and power", "age and weariness", "silence and calm"], "answer": 1, "why": "A rattle suggests something old and worn."},
+      {"q": "Which is the better analysis?", "options": ["The writer uses personification.", "The writer personifies the tram, which makes the climb feel unhurried and timeless."], "answer": 1, "why": "The second explains the effect on the reader — that is where the marks are."},
+      {"q": "'came back small, careful, and wrapped in safety nets.' The three-part list creates…", "options": ["a rushed, panicky tone", "a deliberate, calm tone", "a humorous tone"], "answer": 1, "why": "The list slows the sentence and feels measured and controlled."},
+      {"q": "Every effects answer must include…", "options": ["a precise quotation", "the writer's name", "a definition of the device"], "answer": 0, "why": "Quote the exact words, then explain — evidence first."}
+    ]
+  }
+}
