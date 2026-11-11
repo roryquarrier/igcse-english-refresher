@@ -492,7 +492,7 @@
         store = clean;
         save(); decorateNav(); updatePill();
         renderDashboard(s);
-        notice(el(".dash", host) || host, "ok", "Progress imported successfully.");
+        notice(host.querySelector(".dash") || host, "ok", "Progress imported successfully.");
       };
       rd.readAsText(f);
       impFile.value = "";
@@ -505,7 +505,7 @@
         try { localStorage.removeItem(OLD_DONE); localStorage.removeItem(OLD_LAST); } catch (e) {}
         decorateNav(); updatePill();
         renderDashboard(s);
-        notice(el(".dash", host) || host, "ok", "All progress on this device has been erased.");
+        notice(host.querySelector(".dash") || host, "ok", "All progress on this device has been erased.");
       });
     });
     tools.appendChild(exp); tools.appendChild(impBtn); tools.appendChild(reset); tools.appendChild(impFile);
